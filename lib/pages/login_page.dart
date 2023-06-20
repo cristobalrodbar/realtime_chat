@@ -1,49 +1,39 @@
 import 'package:flutter/material.dart';
+import 'package:realtime_chat/widgets/blue_button.dart';
+import 'package:realtime_chat/widgets/custom_input.dart';
+
+import '../widgets/labels.dart';
+import '../widgets/logo.dart';
 
 class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Color(0xfff2f2f2),
+        backgroundColor: const Color(0xfff2f2f2),
         body: SafeArea(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              _Logo(),
-              _Form(),
-              _Labels(),
-              Text(
-                'Términos y condiciones de uso',
-                style: TextStyle(fontWeight: FontWeight.w200),
-              )
-            ],
+          child: SingleChildScrollView(
+            physics: BouncingScrollPhysics(),
+            child: Container(
+              height: MediaQuery.of(context).size.height * 0.9,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Logo(mensaje: 'Login'),
+                  _Form(),
+                  Labels(
+                    titulo: '¿No tienes cuenta?',
+                    subtitulo: 'Crea una ahora',
+                    ruta: 'register',
+                  ),
+                  const Text(
+                    'Términos y condiciones de uso',
+                    style: TextStyle(fontWeight: FontWeight.w200),
+                  )
+                ],
+              ),
+            ),
           ),
         ));
-  }
-}
-
-class _Logo extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-        child: Container(
-      width: 170,
-      margin: EdgeInsets.only(top: 50),
-      child: Column(
-        children: [
-          Image(
-            image: AssetImage('assets/tag-logo.png'),
-          ),
-          SizedBox(
-            height: 20,
-          ),
-          Text(
-            'Messenger',
-            style: TextStyle(fontSize: 20),
-          )
-        ],
-      ),
-    ));
   }
 }
 
@@ -53,45 +43,36 @@ class _Form extends StatefulWidget {
 }
 
 class __FormState extends State<_Form> {
+  final emailCtrl = TextEditingController();
+
+  final passCtrl = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: const EdgeInsets.only(top: 40),
+      padding: const EdgeInsets.symmetric(horizontal: 50),
       child: Column(
         children: [
-          TextField(),
-          TextField(),
-          ElevatedButton(
-            onPressed: () {},
-            child: Text('xd'),
+          CustomInput(
+            icon: Icons.mail_outline,
+            placeHolder: 'Email',
+            keyboardType: TextInputType.emailAddress,
+            textController: emailCtrl,
+          ),
+          CustomInput(
+            icon: Icons.lock_outline,
+            placeHolder: 'Password',
+            isPassword: true,
+            textController: passCtrl,
+          ),
+          Bluebutton(
+            text: 'Ingrese',
+            onPressed: () {
+              print('onpressed');
+            },
           )
         ],
       ),
     );
-  }
-}
-
-class _Labels extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-        child: Column(
-      children: [
-        Text(
-          '¿No tienes cuenta?',
-          style: TextStyle(
-              color: Colors.black54, fontSize: 15, fontWeight: FontWeight.w300),
-        ),
-        SizedBox(
-          height: 10,
-        ),
-        Text(
-          'Crea una ahora',
-          style: TextStyle(
-              color: Colors.blue[600],
-              fontSize: 18,
-              fontWeight: FontWeight.bold),
-        ),
-      ],
-    ));
   }
 }
