@@ -21,37 +21,30 @@ class _UsuariosPageState extends State<UsuariosPage> {
         appBar: AppBar(
             actions: [
               Container(
-                margin: EdgeInsets.only(right: 10),
+                margin: const EdgeInsets.only(right: 10),
                 /* child: Icon(
                 Icons.check_circle,
                 color: Colors.blue[400],
               ), */
-                child: Icon(
-                  Icons.offline_bolt,
-                  color: Colors.red,
-                ),
+                child: const Icon(Icons.offline_bolt, color: Colors.red),
               )
             ],
-            title: Text(
-              'Mi Nombre',
-              style: TextStyle(color: Colors.black87),
-            ),
+            title: Text('Mi Nombre', style: TextStyle(color: Colors.black87)),
             elevation: 1,
             backgroundColor: Colors.white,
             leading: IconButton(
                 onPressed: () {},
-                icon: Icon(Icons.exit_to_app, color: Colors.black87))),
+                icon: const Icon(Icons.exit_to_app, color: Colors.black87))),
         body: SmartRefresher(
           onRefresh: _cargarUsuarios,
           enablePullDown: true,
           controller: _refreshController,
           header: WaterDropHeader(
-            complete: Icon(
-              Icons.check,
-              color: Colors.blue[400],
-            ),
-            waterDropColor: Colors.blue,
-          ),
+              complete: Icon(
+                Icons.check,
+                color: Colors.blue[400],
+              ),
+              waterDropColor: Colors.blue),
           child: _listViewUsuarios(),
         ));
   }
@@ -69,16 +62,14 @@ class _UsuariosPageState extends State<UsuariosPage> {
       title: Text(usuario.nombre),
       subtitle: Text(usuario.email),
       leading: CircleAvatar(
-        backgroundColor: Colors.blue[100],
-        child: Text(usuario.nombre.substring(0, 2)),
-      ),
+          backgroundColor: Colors.blue[100],
+          child: Text(usuario.nombre.substring(0, 2))),
       trailing: Container(
-        width: 10,
-        height: 10,
-        decoration: BoxDecoration(
-            color: usuario.online ? Colors.green[300] : Colors.red,
-            borderRadius: BorderRadius.circular(100)),
-      ),
+          width: 10,
+          height: 10,
+          decoration: BoxDecoration(
+              color: usuario.online ? Colors.green[300] : Colors.red,
+              borderRadius: BorderRadius.circular(100))),
     );
   }
 

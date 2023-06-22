@@ -21,14 +21,11 @@ class LoginPage extends StatelessWidget {
                   Logo(mensaje: 'Login'),
                   _Form(),
                   Labels(
-                    titulo: '¿No tienes cuenta?',
-                    subtitulo: 'Crea una ahora',
-                    ruta: 'register',
-                  ),
-                  const Text(
-                    'Términos y condiciones de uso',
-                    style: TextStyle(fontWeight: FontWeight.w200),
-                  )
+                      titulo: '¿No tienes cuenta?',
+                      subtitulo: 'Crea una ahora',
+                      ruta: 'register'),
+                  const Text('Términos y condiciones de uso',
+                      style: TextStyle(fontWeight: FontWeight.w200))
                 ],
               ),
             ),
@@ -54,23 +51,20 @@ class __FormState extends State<_Form> {
       child: Column(
         children: [
           CustomInput(
-            icon: Icons.mail_outline,
-            placeHolder: 'Email',
-            keyboardType: TextInputType.emailAddress,
-            textController: emailCtrl,
-          ),
+              icon: Icons.mail_outline,
+              placeHolder: 'Email',
+              keyboardType: TextInputType.emailAddress,
+              textController: emailCtrl),
           CustomInput(
-            icon: Icons.lock_outline,
-            placeHolder: 'Password',
-            isPassword: true,
-            textController: passCtrl,
-          ),
+              icon: Icons.lock_outline,
+              placeHolder: 'Password',
+              isPassword: true,
+              textController: passCtrl),
           Bluebutton(
-            text: 'Ingrese',
-            onPressed: () {
-              print('onpressed');
-            },
-          )
+              text: 'Ingrese',
+              onPressed: () {
+                print('onpressed');
+              })
         ],
       ),
     );

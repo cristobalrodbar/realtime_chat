@@ -55,29 +55,25 @@ class __FormState extends State<_Form> {
       child: Column(
         children: [
           CustomInput(
-            icon: Icons.perm_identity,
-            placeHolder: 'Nombre',
-            keyboardType: TextInputType.text,
-            textController: nameCtrl,
-          ),
+              icon: Icons.perm_identity,
+              placeHolder: 'Nombre',
+              keyboardType: TextInputType.text,
+              textController: nameCtrl),
           CustomInput(
-            icon: Icons.mail_outline,
-            placeHolder: 'Email',
-            keyboardType: TextInputType.emailAddress,
-            textController: emailCtrl,
-          ),
+              icon: Icons.mail_outline,
+              placeHolder: 'Email',
+              keyboardType: TextInputType.emailAddress,
+              textController: emailCtrl),
           CustomInput(
-            icon: Icons.lock_outline,
-            placeHolder: 'Password',
-            isPassword: true,
-            textController: passCtrl,
-          ),
+              icon: Icons.lock_outline,
+              placeHolder: 'Password',
+              isPassword: true,
+              textController: passCtrl),
           Bluebutton(
-            text: 'Ingrese',
-            onPressed: () {
-              print('onpressed');
-            },
-          )
+              text: 'Ingrese',
+              onPressed: () {
+                print('onpressed');
+              })
         ],
       ),
     );
