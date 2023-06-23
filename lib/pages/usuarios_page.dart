@@ -12,8 +12,9 @@ class _UsuariosPageState extends State<UsuariosPage> {
       RefreshController(initialRefresh: false);
   final usuarios = [
     Usuario(email: 'tomy@gmail.com', nombre: 'Toms', online: false, uid: '1'),
-    Usuario(email: 'fer@gmail.com', nombre: 'Fer', online: true, uid: '2'),
-    Usuario(email: 'dany@gmail.com', nombre: 'Dany', online: true, uid: '3'),
+    Usuario(
+        email: 'ferherrera@gmail.com', nombre: 'Fer', online: true, uid: '2'),
+    Usuario(email: 'chalino@gmail.com', nombre: 'Cha', online: true, uid: '3')
   ];
   @override
   Widget build(BuildContext context) {
