@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:realtime_chat/services/auth_service.dart';
 import 'package:realtime_chat/widgets/blue_button.dart';
 import 'package:realtime_chat/widgets/custom_input.dart';
 
@@ -63,7 +65,10 @@ class __FormState extends State<_Form> {
           Bluebutton(
               text: 'Ingrese',
               onPressed: () {
-                print('onpressed');
+                print(emailCtrl.text + ' - ' + passCtrl.text);
+                final authService =
+                    Provider.of<AuthService>(context, listen: false);
+                authService.login(emailCtrl.text, passCtrl.text);
               })
         ],
       ),
