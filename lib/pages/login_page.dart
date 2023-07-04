@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:realtime_chat/helpers/mostrar_alerta.dart';
 import 'package:realtime_chat/services/auth_service.dart';
 import 'package:realtime_chat/widgets/blue_button.dart';
 import 'package:realtime_chat/widgets/custom_input.dart';
@@ -47,6 +48,7 @@ class __FormState extends State<_Form> {
   final passCtrl = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    final authService = Provider.of<AuthService>(context, listen: false);
     return Container(
       margin: const EdgeInsets.only(top: 40),
       padding: const EdgeInsets.symmetric(horizontal: 50),
@@ -63,13 +65,25 @@ class __FormState extends State<_Form> {
               isPassword: true,
               textController: passCtrl),
           Bluebutton(
-              text: 'Ingrese',
-              onPressed: () {
-                print(emailCtrl.text + ' - ' + passCtrl.text);
-                final authService =
-                    Provider.of<AuthService>(context, listen: false);
-                authService.login(emailCtrl.text, passCtrl.text);
-              })
+            text: 'Ingrese',
+            onPressed:
+                //TODO null
+                authService.autenticando
+                    ? () => null
+                    : () async {
+                        //print(emailCtrl.text + ' - ' + passCtrl.text);
+                        FocusScope.of(context).unfocus();
+                        final loginOk = await authService.login(
+                            emailCtrl.text.trim(), passCtrl.text.trim());
+                        if (loginOk) {
+                          //TODO navegar a otra pantalla
+                        } else {
+                          //TODO mostrar alerta
+                          mostrarAlerta(context, 'Login incorrecto',
+                              'Revise credenciales');
+                        }
+                      },
+          )
         ],
       ),
     );
