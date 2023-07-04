@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-import 'package:realtime_chat/models/usuarios.dart';
+import 'package:realtime_chat/models/usuario.dart';
 
 class UsuariosPage extends StatefulWidget {
   @override
