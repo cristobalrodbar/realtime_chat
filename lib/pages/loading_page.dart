@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:realtime_chat/pages/login_page.dart';
 import 'package:realtime_chat/pages/usuarios_page.dart';
 import 'package:realtime_chat/services/auth_service.dart';
+import 'package:realtime_chat/services/socket_service.dart';
 
 class LoadingPage extends StatelessWidget {
   @override
@@ -19,16 +20,18 @@ class LoadingPage extends StatelessWidget {
 
   Future checkLoginState(BuildContext context) async {
     final authService = Provider.of<AuthService>(context, listen: false);
+    final socketService = Provider.of<SocketService>(context, listen: false);
+
     final autenticado = await authService.isLoggedIn();
     if (autenticado) {
-      //TODO conectar a socket server
+      socketService.connect();
       //Navigator.pushReplacementNamed(context, 'usuarios');
       // ignore: use_build_context_synchronously
       Navigator.pushReplacement(
           context,
           PageRouteBuilder(
               pageBuilder: (_, __, ___) => UsuariosPage(),
-              transitionDuration: Duration(milliseconds: 0)));
+              transitionDuration: const Duration(milliseconds: 0)));
     } else {
       //Navigator.pushReplacementNamed(context, 'login');
       // ignore: use_build_context_synchronously
@@ -36,7 +39,7 @@ class LoadingPage extends StatelessWidget {
           context,
           PageRouteBuilder(
               pageBuilder: (_, __, ___) => LoginPage(),
-              transitionDuration: Duration(milliseconds: 0)));
+              transitionDuration: const Duration(milliseconds: 0)));
     }
   }
 }

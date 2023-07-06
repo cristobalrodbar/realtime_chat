@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:realtime_chat/helpers/mostrar_alerta.dart';
 import 'package:realtime_chat/services/auth_service.dart';
+import 'package:realtime_chat/services/socket_service.dart';
 import 'package:realtime_chat/widgets/blue_button.dart';
 import 'package:realtime_chat/widgets/custom_input.dart';
 
@@ -44,11 +45,13 @@ class _Form extends StatefulWidget {
 
 class __FormState extends State<_Form> {
   final emailCtrl = TextEditingController();
-
   final passCtrl = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
-    final authService = Provider.of<AuthService>(context, listen: false);
+    final authService = Provider.of<AuthService>(context);
+    final socketService = Provider.of<SocketService>(context);
+
     return Container(
       margin: const EdgeInsets.only(top: 40),
       padding: const EdgeInsets.symmetric(horizontal: 50),
@@ -76,7 +79,7 @@ class __FormState extends State<_Form> {
                         final loginOk = await authService.login(
                             emailCtrl.text.trim(), passCtrl.text.trim());
                         if (loginOk) {
-                          //TODO navegar a otra pantalla
+                          socketService.connect();
                           Navigator.pushReplacementNamed(context, 'usuarios');
                         } else {
                           //TODO mostrar alerta
