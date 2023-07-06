@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:realtime_chat/global/environment.dart';
+import 'package:realtime_chat/services/auth_service.dart';
 
 import 'package:socket_io_client/socket_io_client.dart' as IO;
 
@@ -9,21 +10,23 @@ class SocketService with ChangeNotifier {
   ServerStatus _serverStatus = ServerStatus.Connecting;
   late IO.Socket _socket;
 
-  ServerStatus get serverStatus => _serverStatus;
+  ServerStatus get serverStatus {
+    print('Server status: $_serverStatus');
+    return _serverStatus;
+  }
 
   IO.Socket get socket => _socket;
   Function get emit => _socket.emit;
 
-/*   SocketService() {
-    _initConfig();
-  } */
+  void connect() async {
+    final token = await AuthService.getToken();
 
-  void connect() {
-    // Dart client 'http://localhost:3000/'
+    // Dart client
     _socket = IO.io(Environment.socketUrl, {
       'transports': ['websocket'],
       'autoConnect': true,
-      'forceNew': true
+      'forceNew': true,
+      'extraHeaders': {'x-token': token}
     });
 
     _socket.on('connect', (_) {
