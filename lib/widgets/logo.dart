@@ -20,7 +20,7 @@ class Logo extends StatelessWidget {
           ),
           Text(
             mensaje,
-            style: TextStyle(fontSize: 20),
+            style: const TextStyle(fontSize: 20),
           )
         ],
       ),

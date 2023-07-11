@@ -29,13 +29,13 @@ class _ChatPageState extends State<ChatPage> with TickerProviderStateMixin {
         title: Column(
           children: [
             CircleAvatar(
-                child: Text(usuarioPara.nombre.substring(0, 2),
-                    style: TextStyle(fontSize: 12)),
                 backgroundColor: Colors.blue[100],
-                maxRadius: 14),
+                maxRadius: 14,
+                child: Text(usuarioPara.nombre.substring(0, 2),
+                    style: const TextStyle(fontSize: 12))),
             const SizedBox(height: 3),
             Text(usuarioPara.nombre,
-                style: TextStyle(color: Colors.black87, fontSize: 12))
+                style: const TextStyle(color: Colors.black87, fontSize: 12))
           ],
         ),
         centerTitle: true,
@@ -49,7 +49,7 @@ class _ChatPageState extends State<ChatPage> with TickerProviderStateMixin {
                     reverse: true,
                     itemBuilder: (_, i) => _messages[i],
                     itemCount: _messages.length,
-                    physics: BouncingScrollPhysics())),
+                    physics: const BouncingScrollPhysics())),
             const Divider(height: 1),
             //caja de texto
             Container(
@@ -119,7 +119,7 @@ class _ChatPageState extends State<ChatPage> with TickerProviderStateMixin {
       texto: texto,
       uid: '123',
       animationController: AnimationController(
-          vsync: this, duration: Duration(milliseconds: 200)),
+          vsync: this, duration: const Duration(milliseconds: 200)),
     );
     _messages.insert(0, newMessage);
     newMessage.animationController.forward();

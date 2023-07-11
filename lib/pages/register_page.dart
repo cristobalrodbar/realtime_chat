@@ -16,15 +16,15 @@ class RegisterPage extends StatelessWidget {
         backgroundColor: const Color(0xfff2f2f2),
         body: SafeArea(
           child: SingleChildScrollView(
-            physics: BouncingScrollPhysics(),
+            physics: const BouncingScrollPhysics(),
             child: Container(
               height: MediaQuery.of(context).size.height * 0.9,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Logo(mensaje: 'Registro'),
+                  const Logo(mensaje: 'Registro'),
                   _Form(),
-                  Labels(
+                  const Labels(
                     ruta: 'login',
                     subtitulo: 'Ingresa ahora',
                     titulo: '¿Ya tienes cuenta?',

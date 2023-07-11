@@ -4,13 +4,15 @@ class Bluebutton extends StatelessWidget {
   final String text;
   final Function onPressed;
 
-  const Bluebutton({required this.text, required this.onPressed});
+  const Bluebutton({super.key, required this.text, required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
-          backgroundColor: Colors.blue, elevation: 2, shape: StadiumBorder()),
+          backgroundColor: Colors.blue,
+          elevation: 2,
+          shape: const StadiumBorder()),
       onPressed: () {
         onPressed();
       },
@@ -20,7 +22,7 @@ class Bluebutton extends StatelessWidget {
         child: Center(
           child: Text(
             text,
-            style: TextStyle(color: Colors.white, fontSize: 17),
+            style: const TextStyle(color: Colors.white, fontSize: 17),
           ),
         ),
       ),

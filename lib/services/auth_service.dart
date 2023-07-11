@@ -10,7 +10,7 @@ import 'package:realtime_chat/models/usuario.dart';
 class AuthService with ChangeNotifier {
   bool _autenticando = false;
   late Usuario usuario;
-  final _storage = new FlutterSecureStorage();
+  final _storage = const FlutterSecureStorage();
 
   bool get autenticando => _autenticando;
   set autenticando(bool valor) {
@@ -20,14 +20,14 @@ class AuthService with ChangeNotifier {
 
   //getter del token de forma estática
   static Future<String?> getToken() async {
-    final _storage = new FlutterSecureStorage();
-    final token = await _storage.read(key: 'token');
+    const storage = FlutterSecureStorage();
+    final token = await storage.read(key: 'token');
     return token;
   }
 
   static Future<void> deleteToken() async {
-    final _storage = new FlutterSecureStorage();
-    await _storage.delete(key: 'token');
+    const storage = FlutterSecureStorage();
+    await storage.delete(key: 'token');
   }
 
   Future<bool> login(String email, String password) async {

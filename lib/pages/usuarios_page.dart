@@ -44,7 +44,7 @@ class _UsuariosPageState extends State<UsuariosPage> {
                         Icons.check_circle,
                         color: Colors.blue[400],
                       )
-                    : Icon(Icons.offline_bolt, color: Colors.red),
+                    : const Icon(Icons.offline_bolt, color: Colors.red),
                 /* child: Icon(
                   Icons.check_circle,
                   color: Colors.blue[400],
@@ -52,8 +52,8 @@ class _UsuariosPageState extends State<UsuariosPage> {
                 //child: const Icon(Icons.offline_bolt, color: Colors.red),
               )
             ],
-            title:
-                Text(usuario.nombre, style: TextStyle(color: Colors.black87)),
+            title: Text(usuario.nombre,
+                style: const TextStyle(color: Colors.black87)),
             elevation: 1,
             backgroundColor: Colors.white,
             leading: IconButton(
@@ -79,9 +79,9 @@ class _UsuariosPageState extends State<UsuariosPage> {
 
   ListView _listViewUsuarios() {
     return ListView.separated(
-        physics: BouncingScrollPhysics(),
+        physics: const BouncingScrollPhysics(),
         itemBuilder: (_, i) => _usuarioListTile(usuarios[i]),
-        separatorBuilder: (_, i) => Divider(),
+        separatorBuilder: (_, i) => const Divider(),
         itemCount: usuarios.length);
   }
 

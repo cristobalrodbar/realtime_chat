@@ -25,14 +25,15 @@ class ChatMessage extends StatelessWidget {
     return Align(
       alignment: Alignment.centerRight,
       child: Container(
-        margin: EdgeInsets.only(bottom: 5, left: 50, right: 5),
-        padding: EdgeInsets.all(12.0),
+        margin: const EdgeInsets.only(bottom: 5, left: 50, right: 5),
+        padding: const EdgeInsets.all(12.0),
+        decoration: BoxDecoration(
+            color: const Color(0xff4d9ef6),
+            borderRadius: BorderRadius.circular(20)),
         child: Text(
           texto,
-          style: TextStyle(color: Colors.white),
+          style: const TextStyle(color: Colors.white),
         ),
-        decoration: BoxDecoration(
-            color: Color(0xff4d9ef6), borderRadius: BorderRadius.circular(20)),
       ),
     );
   }
@@ -41,15 +42,15 @@ class ChatMessage extends StatelessWidget {
     return Align(
       alignment: Alignment.centerLeft,
       child: Container(
-        margin: EdgeInsets.only(bottom: 5, left: 5, right: 50),
-        padding: EdgeInsets.all(12.0),
+        margin: const EdgeInsets.only(bottom: 5, left: 5, right: 50),
+        padding: const EdgeInsets.all(12.0),
+        decoration: BoxDecoration(
+            color: const Color.fromARGB(255, 163, 188, 214),
+            borderRadius: BorderRadius.circular(20)),
         child: Text(
           texto,
-          style: TextStyle(color: Colors.white),
+          style: const TextStyle(color: Colors.white),
         ),
-        decoration: BoxDecoration(
-            color: Color.fromARGB(255, 163, 188, 214),
-            borderRadius: BorderRadius.circular(20)),
       ),
     );
   }
