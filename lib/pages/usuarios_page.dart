@@ -3,8 +3,10 @@ import 'package:provider/provider.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:realtime_chat/models/usuario.dart';
 import 'package:realtime_chat/services/auth_service.dart';
+import 'package:realtime_chat/services/chat_service.dart';
 import 'package:realtime_chat/services/usuarios_service.dart';
 
+import '../services/chat_service.dart';
 import '../services/socket_service.dart';
 
 class UsuariosPage extends StatefulWidget {
@@ -18,12 +20,6 @@ class _UsuariosPageState extends State<UsuariosPage> {
 
   RefreshController _refreshController =
       RefreshController(initialRefresh: false);
-  /* final usuarios = [
-    Usuario(email: 'tomy@gmail.com', nombre: 'Toms', online: false, uid: '1'),
-    Usuario(
-        email: 'ferherrera@gmail.com', nombre: 'Fer', online: true, uid: '2'),
-    Usuario(email: 'chalino@gmail.com', nombre: 'Cha', online: true, uid: '3')
-  ]; */
 
   @override
   void initState() {
@@ -102,6 +98,13 @@ class _UsuariosPageState extends State<UsuariosPage> {
           decoration: BoxDecoration(
               color: usuario.online ? Colors.green[300] : Colors.red,
               borderRadius: BorderRadius.circular(100))),
+      onTap: () {
+        final chatService = Provider.of<ChatService>(context, listen: false);
+        chatService.usuarioPara = usuario;
+        Navigator.pushNamed(context, 'chat');
+
+        //print(usuario.nombre + usuario.email);
+      },
     );
   }
 
